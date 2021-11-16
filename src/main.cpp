@@ -16,5 +16,15 @@ void setup() {
 }
 
 void loop() {
-  _leds->LEDOff();
+  // put your main code here, to run repeatedly:
+  _leds->setLEDBrightness(5);
+  Serial.println("Red");
+  _leds->setLEDColor(255, 0, 0);
+  delay(200);
+  Serial.println("Green");
+  _leds->setLEDColor(0, 255, 0);
+  delay(200);
+  Serial.println("Blue");
+  _leds->setLEDColor(0, 0, 255);
+  delay(200);
 }
