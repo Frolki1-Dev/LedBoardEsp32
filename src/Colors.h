@@ -9,3 +9,4 @@ RGB red();
 RGB blue();
 RGB green();
 RGB rgbOff();
+RGB calculateRainbowColor(int max, int current);

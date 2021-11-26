@@ -4,7 +4,7 @@
 #include "Colors.h"
 
 static LED *_leds;
-static int delayLed = 350;
+static int delayLed = 40;
 
 struct Board {
   RGB led0, led1, led2, led3, led4, led5, led6, led7, led8, led9;
@@ -64,8 +64,25 @@ RGB getRgbByIndex(Board board, int index) {
 void loop() {
   // put your main code here, to run repeatedly:
   //_leds->setLEDBrightness(5);
+  int min = 0;
+  int max = 13;
 
-  int animationSize = sizeof(_knightRiderAnimation) / sizeof(Board);
+  for(int index = 0; index < max; index++) {
+    
+    for(int ledIndex = 0; ledIndex <= 9; ledIndex++) {
+      int ledColorIndex = index + ledIndex;
+
+      if(ledColorIndex > max) {
+        ledColorIndex = ledColorIndex - max;
+      }
+
+      RGB currentColor = calculateRainbowColor(max, ledColorIndex);
+      _leds->setLEDColor(ledIndex, currentColor.red, currentColor.green, currentColor.blue);
+    }
+    delay(delayLed);
+  }
+
+  /*int animationSize = sizeof(_knightRiderAnimation) / sizeof(Board);
 
   for(int board_index = 0; board_index < animationSize; board_index++) {
     Serial.printf("Bord %i\n", board_index);
@@ -82,5 +99,5 @@ void loop() {
       }
     }
     delay(delayLed);
-  }
+  }*/
 }
